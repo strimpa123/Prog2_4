@@ -12,7 +12,7 @@ namespace Prog2_4
         {
             //RPG - Turn Based game
             Console.WriteLine("=====================================");
-            Console.WriteLine("      WELCOME TO PINOY LEAGUES RPG!         ");
+            Console.WriteLine("    WELCOME TO PINOY LEAGUES RPG!      ");
             Console.WriteLine("   A TURN-BASED BATTLE EXPERIENCE   ");
             Console.WriteLine("=====================================");
             Console.WriteLine("\nEach player takes turns choosing to \nATTACK or HEAL.");
@@ -22,8 +22,8 @@ namespace Prog2_4
 
 
             Random rng = new Random();
-            int plr1Health = 100;
-            int plr2Health = 100;
+            int plr1Health = 23;
+            int plr2Health = 88;
             int healthbar1;
             int healthbar2;
             int turn = 1;
@@ -46,12 +46,14 @@ namespace Prog2_4
                 if (turn == 1)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Round [{roundCounter}]");
+                    Console.WriteLine($"\t\t     -----Round [{roundCounter}]-----");
                     healthbar1 = plr1Health / 10;
                     healthbar2 = plr2Health / 10;
 
-                    Console.WriteLine($"{name1}'s HP BAR\t[{plr1Health} HP]");
-                    Console.WriteLine("------------------- ");
+                    Console.WriteLine($"{name1}'s HP BAR\t" +
+                        $"[{Console.ForegroundColor = ConsoleColor.Green}{plr1Health} HP]" +
+                        $"\t\t\t{name2}'s HP BAR\t[{plr2Health} HP]");
+                    Console.WriteLine("------------------- \t\t\t------------------- ");
                     for ( int i = 0; i <healthbar1;i++)
                     {
                         if (i < 8)
@@ -63,14 +65,11 @@ namespace Prog2_4
                         Console.Write("/ ");
                     }
                     Console.ResetColor();
-                    for ( int i = 0;i < 10 - healthbar1; i++)
+                    for (int i = 0; i < 10 - healthbar1; i++)
                     {
                         Console.Write("- ");
                     }
-                    Console.WriteLine("\n------------------- \n");
-
-                    Console.WriteLine($"{name2}'s HP BAR\t[{plr2Health} HP]");
-                    Console.WriteLine("------------------- ");
+                    Console.Write("\t\t\t");
                     for (int i = 0; i < healthbar2; i++)
                     {
                         if (i < 8)
@@ -86,10 +85,13 @@ namespace Prog2_4
                     {
                         Console.Write("- ");
                     }
-                    Console.WriteLine("\n------------------- \n ");
+                    Console.ResetColor();
 
-                    Console.WriteLine($"[{name1}'s Turn]");
-                    Console.Write($"Pick an Ability\nType [Attack] or [Heal]: ");
+                    Console.WriteLine("\n-------------------\t\t\t------------------- \n");
+
+
+                    Console.WriteLine($"\t\t\t[{name1}'s Turn]");
+                    Console.Write($"\t\t       Pick an Ability\n\t\t   Type [Attack] or [Heal]: ");
                     abltInput = Console.ReadLine().ToUpper();
 
                     if (abltInput == "ATTACK")
@@ -104,7 +106,7 @@ namespace Prog2_4
                             plr1Health = 100;
                     }
                     else
-                        Console.WriteLine("You Lost Your Turn!");
+                        Console.WriteLine("\t\t\tYou Lost Your Turn!");
 
                     turn = 2;
 
