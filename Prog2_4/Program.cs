@@ -31,11 +31,11 @@ namespace Prog2_4
             int healthbar2;
             int turn = 1;
             string abltInput;
-            int roundCounter = 1;
+            int roundCounter = 3;
             int plr1Atk = 1;
-            int plr1Hlt = 1;
+            int plr1Hlt = 3;
             int plr2Atk = 1;
-            int plr2Hlt = 1;
+            int plr2Hlt = 7;
             bool procted1 = false;
             bool procted2 = false;
             int dmg = 0;
@@ -137,10 +137,14 @@ namespace Prog2_4
 
                     if (abltInput == "1")
                     {
-                        int damage = rng.Next((1 * plr1Atk), (5 * plr1Atk));
+                        int damage = rng.Next((1 * plr1Atk / 2 + plr1Atk), (3 * plr1Atk/2 + plr1Atk));
                         if (plr2Hlt >= 4)
                         {
-                            int plr2Ref = plr2Hlt / 3;
+                            int plr2Ref = plr2Hlt / 4;
+                            if (plr2Hlt > 8)
+                            {
+                                plr2Ref = 2;
+                            }
                             int chance = rng.Next(plr2Ref, 5);
                             if (chance == 4)
                             {
@@ -156,7 +160,7 @@ namespace Prog2_4
 
                     else if (abltInput == "2")
                     {
-                        plr1Health = plr1Health + rng.Next((1 * plr1Hlt), (7 * plr1Hlt));
+                        plr1Health = plr1Health + rng.Next((1 * plr1Hlt/2 + plr1Hlt), (3 * plr1Hlt/2 +plr1Hlt));
                         if (plr1Health >= 100)
                             plr1Health = 100;
                     }
@@ -248,10 +252,14 @@ namespace Prog2_4
 
                     if (abltInput == "1")
                     {
-                        int damage = rng.Next((1 * plr2Atk + 1), (5 * plr2Atk + 1));
+                        int damage = rng.Next((1 * plr2Atk/2 + 1), (4 * plr2Atk/2 + plr2Atk + 1));
                         if (plr1Hlt >= 4)
                         {
-                            int plr1Ref = plr1Hlt / 3;
+                            int plr1Ref = plr1Hlt / 4;
+                            if (plr1Hlt > 8)
+                            {
+                                plr1Ref = 2;
+                            }
                             int chance = rng.Next(plr1Ref, 5);
                             if (chance == 4) 
                             {
@@ -267,7 +275,7 @@ namespace Prog2_4
 
                     else if (abltInput == "2")
                     {
-                        plr2Health = plr2Health + rng.Next((1 * plr2Hlt), (7 * plr2Hlt+2));
+                        plr2Health = plr2Health + rng.Next((1 * plr2Hlt/2 + plr2Hlt), (4 * plr2Hlt/2 +plr2Hlt+2));
                         if (plr2Health >= 100)
                             plr2Health = 100;
                     }
@@ -277,55 +285,130 @@ namespace Prog2_4
                     turn = 1;
                     roundCounter++;
                 }
+                bool announce = false;
                 if (roundCounter % 4 == 0)
                 {
                     Console.WriteLine("UPGRADE ABILITIES Tap Enter to Proceed.");
                     Console.ReadKey();
                     Console.Clear();
-                    Console.WriteLine($"UPGRADE TIME\n" +
+                    for (int u = 1; u < 4;u++)
+                    {
+                        if (announce)
+                        {
+                            if (plr1Hlt >= 4 && u == 2)
+                            {
+                                if (plr1Hlt == 4)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.BackgroundColor = ConsoleColor.Green;
+                                    Console.WriteLine($"[{name1}] Has Unlocked 'REFLECT I'");
+                                    Thread.Sleep(10);
+                                    Console.Beep(600, 200);
+                                    Console.BackgroundColor = ConsoleColor.Black;
+                                    Console.Clear();
+                                    Console.WriteLine($"[{name1}] Has Unlocked 'REFLECT I'");
+                                }
+                                else if (plr1Hlt == 8)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.BackgroundColor = ConsoleColor.Cyan;
+                                    Console.WriteLine($"[{name1}] Has Unlocked 'REFLECT II'");
+                                    Thread.Sleep(10);
+                                    Console.Beep(600, 200);
+                                    Console.BackgroundColor = ConsoleColor.Black;
+                                    Console.Clear();
+                                    Console.WriteLine($"[{name1}] Has Unlocked 'REFLECT II'");
+                                }
+                                Console.ResetColor();
+                            }
+                            if (plr2Hlt >= 4 && u == 3)
+                            {
+                                if (plr2Hlt == 4)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.BackgroundColor = ConsoleColor.Green;
+                                    Console.WriteLine($"[{name2}] Has Unlocked 'REFLECT I'");
+                                    Thread.Sleep(10);
+                                    Console.Beep(600, 200);
+                                    Console.BackgroundColor = ConsoleColor.Black;
+                                    Console.Clear();
+                                    Console.WriteLine($"[{name2}] Has Unlocked 'REFLECT I'");
+                                }
+                                else if (plr2Hlt == 8)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.BackgroundColor = ConsoleColor.Cyan;
+                                    Console.WriteLine($"[{name2}] Has Unlocked 'REFLECT II'");
+                                    Thread.Sleep(10);
+                                    Console.Beep(1000, 200);
+                                    Console.BackgroundColor = ConsoleColor.Black;
+                                    Console.Clear();
+                                    Console.WriteLine($"[{name2}] Has Unlocked 'REFLECT II'");
+                                }
+                                Console.ResetColor();
+                            }
+                        }
+                        Console.WriteLine($"UPGRADE TIME\n" +
                         $"[{name1}]'s Stats");
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"-+-+-+-+-+-+-+-+-");
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"[LVL {plr1Atk}] ATTACK = ");
-                    Console.ResetColor();
-                    for (int i = 0; i < (plr1Atk); i++)
-                        Console.Write("| ");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"-+-+-+-+-+-+-+-+-");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"[LVL {plr1Atk}] ATTACK = ");
+                        Console.ResetColor();
+                        for (int i = 0; i < (plr1Atk); i++)
+                            Console.Write("| ");
 
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write($"\n[LVL {plr1Hlt}]  HEAL  = ");
-                    Console.ResetColor();
-                    for (int i = 0; i < plr1Hlt; i++)
-                        Console.Write("| ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n[LVL {plr1Hlt}]  HEAL  = ");
+                        Console.ResetColor();
+                        for (int i = 0; i < plr1Hlt; i++)
+                            Console.Write("| ");
 
-                    Console.Write($"\n[{name1}] Choose an Ability [1]Attack or [2] Heal : ");
-                    string upgUI1 = Console.ReadLine().ToUpper();
-                    if (upgUI1 == "1")
-                        plr1Atk += 1;
-                    else if (upgUI1 == "2")
-                        plr1Hlt += 1;
+                        Console.WriteLine($"\n" +
+                       $"[{name2}]'s Stats");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"[LVL {plr2Atk}] ATTACK = ");
+                        Console.ResetColor();
+                        for (int i = 0; i < (plr2Atk); i++)
+                            Console.Write("| ");
 
-                    Console.WriteLine($"\n" +
-                        $"[{name2}]'s Stats");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"[LVL {plr2Atk}] ATTACK = ");
-                    Console.ResetColor();
-                    for (int i = 0; i < (plr2Atk); i++)
-                        Console.Write("| ");
-
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write($"\n[LVL {plr2Hlt}]  HEAL  = ");
-                    Console.ResetColor();
-                    for (int i = 0; i < plr2Hlt; i++)
-                        Console.Write("| ");
-
-                    Console.Write($"\n[{name2}] Choose an Ability [1] Attack or [2] Heal : ");
-                    string upgUI2 = Console.ReadLine().ToUpper();
-                    if (upgUI2 == "1")
-                        plr2Atk += 1;
-                    else if (upgUI2 == "2")
-                        plr2Hlt += 1;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n[LVL {plr2Hlt}]  HEAL  = ");
+                        Console.ResetColor();
+                        for (int i = 0; i < plr2Hlt; i++)
+                            Console.Write("| ");
+                        if (u == 1)
+                        {
+                            Console.Write($"\n[{name1}] Choose an Ability [1]Attack or [2] Heal : ");
+                            string upgUI1 = Console.ReadLine().ToUpper();
+                            if (upgUI1 == "1")
+                                plr1Atk += 1;
+                            else if (upgUI1 == "2")
+                            {
+                                plr1Hlt += 1;
+                                if (plr1Hlt == 4 || plr1Hlt == 8)
+                                    announce = true;
+                            }
+                            Console.Clear();
+                        }
+                        else if (u == 2)
+                        {
+                            Console.Write($"\n[{name2}] Choose an Ability [1] Attack or [2] Heal : ");
+                            string upgUI2 = Console.ReadLine().ToUpper();
+                            if (upgUI2 == "1")
+                                plr2Atk += 1;
+                            else if (upgUI2 == "2")
+                            {
+                                plr2Hlt += 1;
+                                if (plr1Hlt == 4 || plr1Hlt == 8)
+                                    announce = true;
+                            }
+                            Console.Clear();
+                        }
+                    }
+                    Console.WriteLine("\nClick Enter to Procceed...");
+                    Console.ReadKey();
                 }
 
             }
