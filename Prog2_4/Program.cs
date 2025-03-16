@@ -33,9 +33,9 @@ namespace Prog2_4
             string abltInput;
             int roundCounter = 1;
             int plr1Atk = 1;
-            int plr1Hlt = 12;
+            int plr1Hlt = 1;
             int plr2Atk = 1;
-            int plr2Hlt = 12;
+            int plr2Hlt = 1;
             bool procted1 = false;
             bool procted2 = false;
             int dmg = 0;
