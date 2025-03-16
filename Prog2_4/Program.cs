@@ -137,18 +137,19 @@ namespace Prog2_4
 
                     if (abltInput == "1")
                     {
-                        int damage = rng.Next((1 * plr1Atk / 2 + plr1Atk), (3 * plr1Atk/2 + plr1Atk));
+                        int damage = rng.Next((plr1Atk+1+(plr1Atk/2)), (6+plr1Atk*2 + (plr1Atk / 2)));
                         if (plr2Hlt >= 4)
                         {
                             int plr2Ref = plr2Hlt / 4;
-                            if (plr2Hlt > 8)
+                            if (plr2Hlt >= 8)
                             {
-                                plr2Ref = 2;
+                                plr2Ref = 3;
                             }
                             int chance = rng.Next(plr2Ref, 5);
                             if (chance == 4)
                             {
-                                plr1Health = plr1Health - damage;
+                                plr1Health = plr1Health - (damage-(plr1Hlt-1));
+                                plr2Health = plr2Health + (rng.Next(3, plr2Atk));
                                 procted2 = true;
                             }
                         }
@@ -160,7 +161,7 @@ namespace Prog2_4
 
                     else if (abltInput == "2")
                     {
-                        plr1Health = plr1Health + rng.Next((1 * plr1Hlt/2 + plr1Hlt), (3 * plr1Hlt/2 +plr1Hlt));
+                        plr1Health = plr1Health + rng.Next((plr1Hlt), (5+plr1Hlt*2));
                         if (plr1Health >= 100)
                             plr1Health = 100;
                     }
@@ -252,18 +253,19 @@ namespace Prog2_4
 
                     if (abltInput == "1")
                     {
-                        int damage = rng.Next((1 * plr2Atk/2 + 1), (4 * plr2Atk/2 + plr2Atk + 1));
+                        int damage = rng.Next((plr2Atk+1+(plr2Atk/2)), (6+plr2Atk*2+1 + (plr2Atk / 2)));
                         if (plr1Hlt >= 4)
                         {
                             int plr1Ref = plr1Hlt / 4;
-                            if (plr1Hlt > 8)
+                            if (plr1Hlt >= 8)
                             {
-                                plr1Ref = 2;
+                                plr1Ref = 3;
                             }
                             int chance = rng.Next(plr1Ref, 5);
                             if (chance == 4) 
                             {
-                                plr2Health = plr2Health - damage;
+                                plr2Health = plr2Health - (damage-plr2Hlt);
+                                plr2Health = plr2Health + (rng.Next(3, plr1Atk));
                                 procted1 = true;
                             }
                         }
@@ -275,7 +277,7 @@ namespace Prog2_4
 
                     else if (abltInput == "2")
                     {
-                        plr2Health = plr2Health + rng.Next((1 * plr2Hlt/2 + plr2Hlt), (4 * plr2Hlt/2 +plr2Hlt+2));
+                        plr2Health = plr2Health + rng.Next((plr2Hlt), (5+plr2Hlt*2));
                         if (plr2Health >= 100)
                             plr2Health = 100;
                     }
@@ -401,7 +403,7 @@ namespace Prog2_4
                             else if (upgUI2 == "2")
                             {
                                 plr2Hlt += 1;
-                                if (plr1Hlt == 4 || plr1Hlt == 8)
+                                if (plr2Hlt == 4 || plr2Hlt == 8)
                                     announce = true;
                             }
                             Console.Clear();
