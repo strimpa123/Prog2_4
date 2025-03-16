@@ -49,13 +49,14 @@ namespace Prog2_4
             Console.Write("\nEnter Player 2 Name: ");
             string name2 = Console.ReadLine();
             Console.ResetColor();
-            while (plr1Health > 0 && plr2Health > 0) 
+
+            while (plr1Health > 0 && plr2Health > 0)  // Main loop what will run until 1 is below or equal to 0 health
             {
 
-                if (turn == 1)
+                if (turn == 1)       // Player 1's Turn
                 {
                     Console.Clear();
-                    if (crit2)
+                    if (crit2)       // Checks for Critical Occurance
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.BackgroundColor = ConsoleColor.Red;
@@ -67,7 +68,7 @@ namespace Prog2_4
                         Console.WriteLine($"[{name2}] Did a CRITICAL STRIKE!! [-{dmg}]");
                         crit2 = false;
                     }
-                    if (procted1 == true)
+                    if (procted1 == true)  // Checks for Reflect Effect Occurance
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Beep(5100, 70);
@@ -135,10 +136,10 @@ namespace Prog2_4
                     Console.Write("\n\t\t     Type [1] or [2]: ");
                     abltInput = Console.ReadLine().ToUpper();
 
-                    if (abltInput == "1")
+                    if (abltInput == "1")   // Checks if User input is Attack
                     {
                         int damage = rng.Next((plr1Atk +(plr1Atk/2)), (5+plr1Atk*2)) + (plr1Atk / 2);
-                        if (plr2Hlt >= 4)
+                        if (plr2Hlt >= 4)   // Checks if Other player has Reflect Ability
                         {
                             int plr2Ref = plr2Hlt / 4;
                             if (plr2Hlt >= 8)
@@ -146,7 +147,7 @@ namespace Prog2_4
                                 plr2Ref = 3;
                             }
                             int chance = rng.Next(plr2Ref, 5);
-                            if (chance == 4)
+                            if (chance == 4) // If reflect occured It will return damage
                             {
                                 plr1Health = plr1Health - (damage-(plr1Hlt+(plr1Hlt/2)));
                                 plr2Health = plr2Health + (rng.Next(3,plr2Hlt + 3));
@@ -154,15 +155,15 @@ namespace Prog2_4
                             }
                         }
                         plr2Health = plr2Health - damage;
-                        if (damage >= 10)
+                        if (damage >= 10)   // if damage is 10 above announce critical strike
                             crit1 = true;
                         dmg = damage;
                     }
 
-                    else if (abltInput == "2")
+                    else if (abltInput == "2") // If user input is Heal
                     {
                         plr1Health = plr1Health + rng.Next((plr1Hlt), (5+plr1Hlt*2)) - (plr1Hlt/2);
-                        if (plr1Health >= 100)
+                        if (plr1Health >= 100)  // Checks if health will over flow
                             plr1Health = 100;
                     }
                     else
@@ -171,7 +172,7 @@ namespace Prog2_4
                     if (plr1Health <= 0 || plr2Health <= 0)
                         break;
                 }  
-                if (turn == 2) 
+                if (turn == 2)                  // Player 2's Turn Same Procedure
                 {
                     Console.Clear();
                     if (crit1)
@@ -288,7 +289,7 @@ namespace Prog2_4
                     roundCounter++;
                 }
                 bool announce = false;
-                if (roundCounter % 4 == 0)
+                if (roundCounter % 4 == 0)      // This checks if Round is increment of 4 then proceeds to diplay Upgrade UI
                 {
                     Console.WriteLine("UPGRADE ABILITIES Tap Enter to Proceed.");
                     Console.ReadKey();
@@ -323,7 +324,7 @@ namespace Prog2_4
                                 }
                                 Console.ResetColor();
                             }
-                            if (plr2Hlt >= 4 && u == 3)
+                            if (plr2Hlt >= 4 && u == 3)             
                             {
                                 if (plr2Hlt == 4)
                                 {
@@ -416,7 +417,7 @@ namespace Prog2_4
             }
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            if (plr2Health <=00 && plr1Health <=00)
+            if (plr2Health <=00 && plr1Health <=00)             // Checks ofr Outcome Conditions
             {
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       ***     A DRAW!!     ***         ");
