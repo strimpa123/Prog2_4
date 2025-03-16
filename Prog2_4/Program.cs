@@ -149,7 +149,7 @@ namespace Prog2_4
                             if (chance == 4)
                             {
                                 plr1Health = plr1Health - (damage-(plr1Hlt-1));
-                                plr2Health = plr2Health + (rng.Next(3, plr2Atk));
+                                plr2Health = plr2Health + (rng.Next(2, plr2Atk+1));
                                 procted2 = true;
                             }
                         }
@@ -253,7 +253,7 @@ namespace Prog2_4
 
                     if (abltInput == "1")
                     {
-                        int damage = rng.Next((plr2Atk+1+(plr2Atk/2)), (6+plr2Atk*2+1 + (plr2Atk / 2)));
+                        int damage = rng.Next((plr2Atk+1+(plr2Atk/2)), (6+plr2Atk*2 + (plr2Atk / 2)));
                         if (plr1Hlt >= 4)
                         {
                             int plr1Ref = plr1Hlt / 4;
@@ -265,7 +265,7 @@ namespace Prog2_4
                             if (chance == 4) 
                             {
                                 plr2Health = plr2Health - (damage-plr2Hlt);
-                                plr2Health = plr2Health + (rng.Next(3, plr1Atk));
+                                plr2Health = plr2Health + (rng.Next(2, plr1Atk+1));
                                 procted1 = true;
                             }
                         }
