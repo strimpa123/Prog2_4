@@ -31,11 +31,11 @@ namespace Prog2_4
             int healthbar2;
             int turn = 1;
             string abltInput;
-            int roundCounter = 3;
+            int roundCounter = 1;
             int plr1Atk = 1;
-            int plr1Hlt = 3;
+            int plr1Hlt = 1;
             int plr2Atk = 1;
-            int plr2Hlt = 7;
+            int plr2Hlt = 1;
             bool procted1 = false;
             bool procted2 = false;
             int dmg = 0;
